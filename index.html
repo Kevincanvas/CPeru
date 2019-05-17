@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <style>
+    </style>
+</head>
+
+<body style="background: 000;">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-lg-12 text-center">
+                <div class="countdown" id="countdown">
+                    <h2>
+                        <span class="timeel days">00</span>
+                        <span class="timeel timeRefDays">Dias</span>
+                    </h2>
+                    <h3>
+                        <span class="timeel hours">00</span>
+                        <span class="timeel timeRefHours">Horas</span>
+                    </h3>
+                    <h3>
+                        <span class="timeel minutes">00</span>
+                        <span class="timeel timeRefMinutes">Minutos</span>
+                    </h3>
+                    <h4>
+                        <span class="timeel seconds">00</span>
+                        <span class="timeel timeRefSeconds">Segundos</span>
+                    </h4>
+                    <h4>
+                        <span class="timeel miliseconds">00</span>
+                        <span class="timeel timeRefMiliseconds">Milisegundos</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    /*
+     * Basic Count Down to Date and Time
+     * Author: @guwii / guwii.com
+     * https://guwii.com/bytes/easy-countdown-to-date-with-javascript-jquery/
+     */
+    window.onload = function() {
+        // Month Day, Year Hour:Minute:Second, id-of-element-container
+        countDownToTime("Jul 26, 2021 23:59:59", 'countdown'); // ****** Change this line!
+    }
+
+    function countDownToTime(countTo, id) {
+        countTo = new Date(countTo).getTime();
+        var now = new Date(),
+            countTo = new Date(countTo),
+            timeDifference = (countTo - now);
+
+        var secondsInADay = 60 * 60 * 1000 * 24,
+            secondsInAHour = 60 * 60 * 1000;
+
+        days = Math.floor(timeDifference / (secondsInADay) * 1);
+        hours = Math.floor((timeDifference % (secondsInADay)) / (secondsInAHour) * 1);
+        mins = Math.floor(((timeDifference % (secondsInADay)) % (secondsInAHour)) / (60 * 1000) * 1);
+        secs = Math.floor((((timeDifference % (secondsInADay)) % (secondsInAHour)) % (60 * 1000)) / 1000 * 1);
+        milisecs = timeDifference % 1000;
+
+        var idEl = document.getElementById(id);
+        idEl.getElementsByClassName('days')[0].innerHTML = days;
+        idEl.getElementsByClassName('hours')[0].innerHTML = hours;
+        idEl.getElementsByClassName('minutes')[0].innerHTML = mins;
+        idEl.getElementsByClassName('seconds')[0].innerHTML = secs;
+        idEl.getElementsByClassName('miliseconds')[0].innerHTML = milisecs;
+
+        clearTimeout(countDownToTime.interval);
+        countDownToTime.interval = setTimeout(function() { countDownToTime(countTo, id); }, 1);
+    }
+    </script>
+</body>
+
+</html>
